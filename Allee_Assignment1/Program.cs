@@ -52,7 +52,7 @@ namespace Allee_Assignment1
         {
             Console.WriteLine("1. Standard");
             Console.WriteLine("2. Imax");
-            Console.WriteLine("3. Imax 3-D");
+            Console.WriteLine("3. Imax-3D");
         }
     }
 }
