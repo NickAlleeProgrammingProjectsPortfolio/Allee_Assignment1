@@ -48,11 +48,36 @@ namespace Allee_Assignment1
             }
 
         }
-        public static void ticketOfferer()
+        public static int ticketOfferer()
         {
             Console.WriteLine("1. Standard");
             Console.WriteLine("2. Imax");
             Console.WriteLine("3. Imax-3D");
+            Console.WriteLine("Please enter the type of movie you would like to see?");
+            var moviePick = Console.ReadLine();
+
+            while (string.IsNullOrEmpty(moviePick))
+            {
+                Console.WriteLine("Sorry, Please enter the type of movie you would like to see?");
+                moviePick = Console.ReadLine();
+            }
+            int intMoviePick;
+            // while age is not an int
+            while (!int.TryParse(moviePick, out intMoviePick))
+            {
+                Console.WriteLine("the number must be between 1 and 3");
+                moviePick = Console.ReadLine();
+
+            }
+            // while its not between 1 and 3
+            while (!(intMoviePick < 4 || intMoviePick > 0))
+            {
+                Console.WriteLine("the number must be between 1 and 3");
+                return ticketOfferer();
+
+            }
+
+            return intMoviePick;
         }
     }
 }
