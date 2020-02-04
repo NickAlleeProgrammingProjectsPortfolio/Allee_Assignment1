@@ -9,6 +9,7 @@ namespace Allee_Assignment1
             int stopper = 0;
             while (stopper == 0)
             {
+                list<int> ticketsWanted;
                 Console.WriteLine("**** Welcome to B&B Theatre ****");
 
                 Console.WriteLine("Please enter the full name:");
@@ -23,30 +24,19 @@ namespace Allee_Assignment1
 
                 Console.WriteLine("Please enter your age?");
                 var age = Console.ReadLine();
-
-                while (string.IsNullOrEmpty(name))
+                if (ageChecker(age) == 1)
                 {
-                    Console.WriteLine("Sorry, Please enter your age?");
-                    name = Console.ReadLine();
+                    while (ticketsWanted.Length < 3)
+                    {
+                        // a ticket with the number 4 indicates a 3d movie with 3d glasses
+                        ticketsWanted.Append(ticketOfferer());
+                    }
+                    
                 }
-                int intAge;
-                // while age is an int
-                while (int.TryParse(age, out intAge))
-                {
-                    if (intAge < 15)
-                    {
-                        Console.WriteLine("Your Age is below 15, you cannot book ticket online. Please talk to your parent or guardian!!");
-                        stopper = 1;
-                    }
-                    if (intAge > 90)
-                    {
-                        Console.WriteLine("You are too old to watch a movie, sorry!");
-                        stopper = 1;
-                    }
+
+                
 
                 }
-            }
-
         }
         public static int ticketOfferer()
         {
@@ -77,7 +67,50 @@ namespace Allee_Assignment1
 
             }
 
+            if (intMoviePick == 3)
+            {
+                Console.WriteLine("do you want 3d glasses? (y/n)");
+                string pick = Console.ReadLine();
+                if (pick == "y")
+                {
+                    return 4;
+                }
+
+            }
+
             return intMoviePick;
         }
+
+        public static int ageChecker(string age)
+        {
+            while (string.IsNullOrEmpty(age))
+            {
+                Console.WriteLine("Sorry, Please enter your age?");
+                age = Console.ReadLine();
+            }
+            int intAge;
+            // while age is an int
+            while (!(int.TryParse(age, out intAge)))
+            {
+                Console.WriteLine("Sorry, Please enter your age?");
+                age = Console.ReadLine();
+            }
+            if (intAge < 15)
+            {
+                Console.WriteLine("Your Age is below 15, you cannot book ticket online. Please talk to your parent or guardian!!");
+                return 0;
+            }
+            if (intAge > 90)
+            {
+                Console.WriteLine("You are too old to watch a movie, sorry!");
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+
+        
     }
 }
