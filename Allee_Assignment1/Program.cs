@@ -30,6 +30,7 @@ namespace Allee_Assignment1
                     name = Console.ReadLine();
                 }
                 int intAge;
+                // while age is an int
                 while (int.TryParse(age, out intAge))
                 {
                     if (intAge < 15)
@@ -42,9 +43,16 @@ namespace Allee_Assignment1
                         Console.WriteLine("You are too old to watch a movie, sorry!");
                         stopper = 1;
                     }
+
                 }
             }
 
+        }
+        public static void ticketOfferer()
+        {
+            Console.WriteLine("1. Standard");
+            Console.WriteLine("2. Imax");
+            Console.WriteLine("3. Imax 3-D");
         }
     }
 }
