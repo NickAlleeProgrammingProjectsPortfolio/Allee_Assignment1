@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Allee_Assignment1
 {
@@ -6,38 +7,28 @@ namespace Allee_Assignment1
     {
         static void Main(string[] args)
         {
-            int stopper = 0;
-            while (stopper == 0)
+            introLine();
+            var ticketsWanted = new List<int> { };
+            var name = "";
+            name = nameChecker();
+
+            // now call age checker. mabye make each function call the next???
+            Console.WriteLine("Please enter your age?");
+            var age = Console.ReadLine();
+            if (ageChecker(age) == 1)
             {
-                list<int> ticketsWanted;
-                Console.WriteLine("**** Welcome to B&B Theatre ****");
-
-                Console.WriteLine("Please enter the full name:");
-                var name = Console.ReadLine();
-
-                while (string.IsNullOrEmpty(name))
+                while (ticketsWanted.Count < 3)
                 {
-                    Console.WriteLine("Sorry, Please enter your name?");
-                    name = Console.ReadLine();
+                    // a ticket with the number 4 indicates a 3d movie with 3d glasses
+                    ticketsWanted.Add(ticketOfferer());
                 }
 
+            }
 
-                Console.WriteLine("Please enter your age?");
-                var age = Console.ReadLine();
-                if (ageChecker(age) == 1)
-                {
-                    while (ticketsWanted.Length < 3)
-                    {
-                        // a ticket with the number 4 indicates a 3d movie with 3d glasses
-                        ticketsWanted.Append(ticketOfferer());
-                    }
-                    
-                }
 
-                
 
-                }
         }
+
         public static int ticketOfferer()
         {
             Console.WriteLine("1. Standard");
@@ -110,7 +101,30 @@ namespace Allee_Assignment1
                 return 1;
             }
         }
+        public static void introLine()
+        {
+            Console.WriteLine("**** Welcome to B&B Theatre ****");
+        }
+        public static string nameChecker()
+        {
+            Console.WriteLine("Please enter the full name:");
+            var name = Console.ReadLine();
 
-        
+            while (string.IsNullOrEmpty(name))
+            {
+                Console.WriteLine("Sorry, Please enter your name?");
+                name = Console.ReadLine();
+            }
+            return name;
+        }
+
+
+
+
+
+
+
+
     }
 }
+
