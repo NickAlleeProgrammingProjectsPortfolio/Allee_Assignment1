@@ -169,7 +169,7 @@ namespace Allee_Assignment1
                 if (ticket == 3) { TotalAmount += Decimal.ToDouble(cost); }
                 if (ticket == 4) { TotalAmount += Decimal.ToDouble(cost) + 2.0; }
             }
-            Console.WriteLine(Name + ", your total is: " + TotalAmount);
+            Console.WriteLine(Name + ", your total is: $" + TotalAmount);
             exitLine();
         }
 
