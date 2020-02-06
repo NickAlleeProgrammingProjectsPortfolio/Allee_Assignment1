@@ -66,7 +66,8 @@ namespace Allee_Assignment1
         public static void ticketOfferer(String Name)
         {
             var ticketsWanted = new List<int> {};
-            Console.WriteLine(ticketsWanted.Count + "here!!!!!!!");
+
+            // use this variable to end the ticket offerer
             int again = 1;
             while (again == 1)
             {
@@ -76,22 +77,26 @@ namespace Allee_Assignment1
                     Console.WriteLine("1. Standard");
                     Console.WriteLine("2. Imax");
                     Console.WriteLine("3. Imax-3D");
-                    Console.WriteLine("Please enter the type of movie you would like to see?");
+                    Console.WriteLine("Please enter the number associated with the type of movie you would like to see?");
                     var moviePick = Console.ReadLine();
 
+                    int intMoviePick = 0;
+                    int.TryParse(moviePick, out intMoviePick);
                     while (string.IsNullOrEmpty(moviePick))
                     {
-                        Console.WriteLine("Sorry, Please enter the type of movie you would like to see?");
-                        moviePick = Console.ReadLine();
-                    }
-                    int intMoviePick;
-                    // while age is not an int and its not less than 3 or greater than 0
-                    while (!(int.TryParse(moviePick, out intMoviePick)) && !(intMoviePick < 3 || intMoviePick > 0))
-                    {
-                        Console.WriteLine("the number must be between 1 and 3");
+                        Console.WriteLine("Sorry, Please enter the number associated with the type of movie you would like to see?");
                         moviePick = Console.ReadLine();
 
+                        
+                        // while age is not an int and its not less than 3 or greater than 0
+                        while (!(int.TryParse(moviePick, out intMoviePick)) && !(intMoviePick < 3 || intMoviePick > 0))
+                        {
+                            Console.WriteLine("the number must be between 1 and 3");
+                            moviePick = Console.ReadLine();
+
+                        }
                     }
+
                     string pick = "";
 
                     if (intMoviePick == 3)
@@ -101,8 +106,8 @@ namespace Allee_Assignment1
                         
 
                     }
-                    string amtOfTickets = "";
-                    amtOfTickets = howManyTickets(ticketsWanted);
+                    // find out how many tickets the user wants of that particular type of movie
+                    string amtOfTickets = howManyTickets(ticketsWanted);
                     int intAmtOfTickets = Int32.Parse(amtOfTickets);
                     // ask how many they want with a new function called howManyTickets
                     // max amount of tickets should be count of 3 - ticketsWanted
@@ -159,23 +164,40 @@ namespace Allee_Assignment1
 
         public static void totaler(String Name, List<int> movieTickets)
         {
-            Console.WriteLine("Total Number of Tickets are: " + movieTickets.Count);
+            Console.WriteLine("Total Number of Tickets you would like: " + movieTickets.Count);
             Double TotalAmount = 0;
             Decimal cost = 7.85m;
             foreach (int ticket in movieTickets)
             {
-                if (ticket == 1) { TotalAmount += Decimal.ToDouble(cost); }
-                if (ticket == 2) { TotalAmount += Decimal.ToDouble(cost); }
-                if (ticket == 3) { TotalAmount += Decimal.ToDouble(cost); }
-                if (ticket == 4) { TotalAmount += Decimal.ToDouble(cost) + 2.0; }
+                if (ticket == 1) { TotalAmount += Decimal.ToDouble(cost);
+                    Console.WriteLine("1 ticket for standard. --- $" + cost);
+                }
+                if (ticket == 2) { TotalAmount += Decimal.ToDouble(cost);
+                    Console.WriteLine("1 ticket for Imax. --- $" + cost);
+                }
+                if (ticket == 3) { TotalAmount += Decimal.ToDouble(cost);
+                    Console.WriteLine("1 ticket for Imax-3D with no 3D glasses. --- $" + cost);
+                }
+                if (ticket == 4) { TotalAmount += Decimal.ToDouble(cost) + 2.0;
+                    Console.WriteLine("1 ticket for Imax-3D with 3D glasses. --- $" + (cost +2));
+                }
             }
-            Console.WriteLine(Name + ", your total is: $" + TotalAmount);
+            Console.WriteLine(Name + ", your total cost is: $" + TotalAmount);
             exitLine();
         }
 
         public static void exitLine()
         {
-            Console.WriteLine("Thank you! and have a nice day.");
+            Console.WriteLine("Thank you! and have a nice day. enter 1 to restart the program or anything else to exit");
+            var restart = Console.ReadLine();
+            if (restart == "1")
+            {
+                introLine();
+            }
+            else
+            {
+                Console.WriteLine("Goodbye!");
+            }
         }
 
 
