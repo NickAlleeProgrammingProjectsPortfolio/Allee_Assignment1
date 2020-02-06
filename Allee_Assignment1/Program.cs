@@ -134,7 +134,7 @@ namespace Allee_Assignment1
                 }
                 else
                 {
-                    Console.WriteLine("You can only buy 1 or 2 or 3 tickets per transaction. Sorry!!");
+                    Console.WriteLine("You can only buy 1 or 2 or 3 tickets per transaction. Right now you have " + ticketsWanted.Count + " tickets in your cart.");
                     again = 0;
                 }
             }
@@ -153,7 +153,7 @@ namespace Allee_Assignment1
             int intNumOfTickets = Int32.Parse(numberOfTickets);
             while (intNumOfTickets > 3 - ticketsWanted.Count)
             {
-                Console.WriteLine("cant have more than 3 total tickets");
+                Console.WriteLine("cant have more than 3 total tickets. Right now you have " + ticketsWanted.Count + " tickets.");
                 numberOfTickets = Console.ReadLine();
                 intNumOfTickets = Int32.Parse(numberOfTickets);
             }
@@ -188,7 +188,7 @@ namespace Allee_Assignment1
 
         public static void exitLine()
         {
-            Console.WriteLine("Thank you! and have a nice day. enter 1 to restart the program or anything else to exit");
+            Console.WriteLine("Thank you! and have a nice day. \n enter 1 to restart the program or anything else to exit");
             var restart = Console.ReadLine();
             if (restart == "1")
             {
