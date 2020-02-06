@@ -82,19 +82,11 @@ namespace Allee_Assignment1
 
                     int intMoviePick = 0;
                     int.TryParse(moviePick, out intMoviePick);
-                    while (string.IsNullOrEmpty(moviePick))
+                    while (string.IsNullOrEmpty(moviePick) || !(int.TryParse(moviePick, out intMoviePick)) && !(intMoviePick < 3 || intMoviePick > 0))
                     {
-                        Console.WriteLine("Sorry, Please enter the number associated with the type of movie you would like to see?");
+                        Console.WriteLine("Sorry, Please enter the number associated with the type of movie you would like to see? the number must be between 1 and 3.");
                         moviePick = Console.ReadLine();
 
-                        
-                        // while age is not an int and its not less than 3 or greater than 0
-                        while (!(int.TryParse(moviePick, out intMoviePick)) && !(intMoviePick < 3 || intMoviePick > 0))
-                        {
-                            Console.WriteLine("the number must be between 1 and 3");
-                            moviePick = Console.ReadLine();
-
-                        }
                     }
 
                     string pick = "";
@@ -153,7 +145,7 @@ namespace Allee_Assignment1
             int intNumOfTickets = Int32.Parse(numberOfTickets);
             while (intNumOfTickets > 3 - ticketsWanted.Count)
             {
-                Console.WriteLine("cant have more than 3 total tickets. Right now you have " + ticketsWanted.Count + " tickets.");
+                Console.WriteLine("cant have more than 3 total tickets. Right now you have " + ticketsWanted.Count + " tickets. please enter a number between 1 and 3.");
                 numberOfTickets = Console.ReadLine();
                 intNumOfTickets = Int32.Parse(numberOfTickets);
             }
@@ -182,7 +174,7 @@ namespace Allee_Assignment1
                     Console.WriteLine("1 ticket for Imax-3D with 3D glasses. --- $" + (cost +2));
                 }
             }
-            Console.WriteLine(Name + ", your total cost is: $" + TotalAmount);
+            Console.WriteLine(Name + ", your total cost is: $" + Math.Round(TotalAmount,2));
             exitLine();
         }
 
