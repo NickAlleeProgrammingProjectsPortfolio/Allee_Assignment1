@@ -8,7 +8,6 @@ namespace Allee_Assignment1
         static void Main(string[] args)
         {
             introLine();
-            // now call age checker. mabye make each function call the next???
         }
         public static void introLine()
         {
@@ -66,7 +65,8 @@ namespace Allee_Assignment1
 
         public static void ticketOfferer(String Name)
         {
-            var ticketsWanted = new List<int> { };
+            var ticketsWanted = new List<int> {};
+            Console.WriteLine(ticketsWanted.Count + "here!!!!!!!");
             int again = 1;
             while (again == 1)
             {
@@ -92,22 +92,31 @@ namespace Allee_Assignment1
                         moviePick = Console.ReadLine();
 
                     }
+                    string pick = "";
 
                     if (intMoviePick == 3)
                     {
                         Console.WriteLine("do you want 3d glasses? (y/n)");
-                        string pick = Console.ReadLine();
+                        pick = Console.ReadLine();
+                        
+
+                    }
+                    string amtOfTickets = "";
+                    amtOfTickets = howManyTickets(ticketsWanted);
+                    int intAmtOfTickets = Int32.Parse(amtOfTickets);
+                    // ask how many they want with a new function called howManyTickets
+                    // max amount of tickets should be count of 3 - ticketsWanted
+                    for (int i = 0; i < (intAmtOfTickets); i++)
+                    {
                         if (pick == "y")
                         {
                             ticketsWanted.Add(4);
                         }
-
+                        else
+                        {
+                            ticketsWanted.Add(intMoviePick);
+                        }
                     }
-                    // ask how many they want with a new function called howManyTickets
-                    // max amount of tickets should be count of 3 - ticketsWanted
-                    // for int i =0; i <= result of (howManyTickets);i++ then add the moviepick
-                    ticketsWanted.Add(intMoviePick);
-
                     Console.WriteLine("Do you want to continue again (y/n)?");
                     var yesOrNo = Console.ReadLine();
                     if (yesOrNo == "n")
@@ -128,12 +137,29 @@ namespace Allee_Assignment1
 
         }
 
+        public static string howManyTickets(List<int> ticketsWanted)
+        {
+            string numberOfTickets = "";
+            while (string.IsNullOrEmpty(numberOfTickets))
+            {
+                Console.WriteLine("Enter number of tickets");
+                numberOfTickets = Console.ReadLine();
+            }
+            int intNumOfTickets = Int32.Parse(numberOfTickets);
+            while (intNumOfTickets > 3 - ticketsWanted.Count)
+            {
+                Console.WriteLine("cant have more than 3 total tickets");
+                numberOfTickets = Console.ReadLine();
+                intNumOfTickets = Int32.Parse(numberOfTickets);
+            }
+            return numberOfTickets;
+        }
  
 
 
         public static void totaler(String Name, List<int> movieTickets)
         {
-            Console.WriteLine(Name + " Total Number of Tickets are: " + movieTickets.Count);
+            Console.WriteLine("Total Number of Tickets are: " + movieTickets.Count);
             Double TotalAmount = 0;
             Decimal cost = 7.85m;
             foreach (int ticket in movieTickets)
