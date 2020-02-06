@@ -30,19 +30,19 @@ namespace Allee_Assignment1
 
         public static void ageChecker(String Name)
         {
-            Console.WriteLine("Please enter your age?");
+            Console.WriteLine("Please enter your age (>=15, <= 90)?");
             var age = Console.ReadLine();
 
             while (string.IsNullOrEmpty(age))
             {
-                Console.WriteLine("Sorry, Please enter your age?");
+                Console.WriteLine("Sorry, Please enter your age (>=15, <= 90)?");
                 age = Console.ReadLine();
             }
             int intAge;
             // while age is not an int
             while (!(int.TryParse(age, out intAge)))
             {
-                Console.WriteLine("Sorry, Please enter your age?");
+                Console.WriteLine("Sorry, Please enter your age (>=15, <= 90)?");
                 age = Console.ReadLine();
             }
             if (intAge < 15)
